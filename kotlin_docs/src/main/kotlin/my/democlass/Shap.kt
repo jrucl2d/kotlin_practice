@@ -94,6 +94,51 @@ fun main() {
         .sortedBy { it }
         .map { it.toUpperCase() }
         .forEach { println(it) }
+
+    println("--nullable--")
+    fun parseInt(str: String): Int? {
+        return if (str == "1") 1 else null
+    }
+    fun printProduct(arg1: String, arg2: String) {
+        val x = parseInt(arg1)
+        val y = parseInt(arg2)
+
+        if (x != null && y != null) {
+            println(x * y) // null check 이후에 x, y는 자동적으로 non-nullable 로 캐스팅된다.
+        }
+        else {
+            println("$arg1 or $arg2 is not a number")
+        }
+    }
+    printProduct("1", "1")
+
+    println("--Type checks and automatic casts--")
+
+    fun getStringLength(obj: Any): Int? {
+        if (obj is String) {
+            // is로 비교하면 자동으로 String 으로 캐스팅됨
+            return obj.length
+        }
+        // obj는 여전히 Any 타입으로 남는다.
+        return null
+    }
+    println("${getStringLength("weg")} / ${getStringLength(123)}")
+
+    fun getStringLength1(obj: Any): Int? {
+        if (obj !is String) return null
+        return obj.length // 자동 캐스팅 된다.
+    }
+    println("${getStringLength1("weg")} / ${getStringLength1(123)}")
+
+    fun getStringLength2(obj: Any): Int? {
+        if (obj is String && obj.length > 0) {
+            // && 뒤에서 자동 캐스팅된다.
+            return obj.length
+        }
+        // obj는 여전히 Any 타입으로 남는다.
+        return null
+    }
+    println("${getStringLength2("weg")} / ${getStringLength2(123)}")
 }
 
 /*

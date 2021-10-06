@@ -1,4 +1,4 @@
-package my.democlass
+package basicsyntax.democlass
 
 // 클래스는 기본적으로 final(상속 불가). 상속 가능하게 하려면 open을 붙여야 함
 open class Shape

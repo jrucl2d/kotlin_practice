@@ -1,4 +1,4 @@
-package my.demo
+package basicsyntax.demo
 
 fun main(args: Array<String>) {
     print(args.contentToString()) // Array 인 args 가 [ ]로 출력됨
